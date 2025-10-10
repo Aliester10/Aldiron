@@ -134,10 +134,10 @@ if (sidebarToggle && mobileSidebar) {
   );
 }
 
-// ==================== MOBILE BOTTOM NAVIGATION ====================
+// ==================== NAVIGATION ACTIVE STATE ====================
+const navLinks = document.querySelectorAll(".nav-menu a");
 const bottomNavItems = document.querySelectorAll(".bottom-nav-item");
 const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-menu a");
 
 // Get current page filename
 const currentPage = window.location.pathname.split("/").pop() || "index.html";
@@ -147,7 +147,7 @@ const currentPageName = currentPage.replace(".html", "");
 const pageMap = {
   index: "index.html",
   "": "index.html",
-  aldiron_logistics2: "index.html",
+  aldiron_logistics: "index.html",
   about: "about.html",
   service: "service.html",
   news: "news.html",
@@ -176,7 +176,7 @@ function setActiveNavByPage() {
       itemHref === pageMap[currentPageName] ||
       (currentPage === "" && itemHref === "index.html") ||
       (currentPage === "/" && itemHref === "index.html") ||
-      (currentPage === "aldiron_logistics2.html" && itemHref === "index.html")
+      (currentPage === "aldiron_logistics.html" && itemHref === "index.html")
     ) {
       item.classList.add("active");
     }
@@ -192,7 +192,7 @@ function setActiveNavByPage() {
       linkHref === pageMap[currentPageName] ||
       (currentPage === "" && linkHref === "index.html") ||
       (linkHref === "index.html" && currentPage === "") ||
-      (linkHref === "index.html" && currentPage === "aldiron_logistics2.html")
+      (linkHref === "index.html" && currentPage === "aldiron_logistics.html")
     ) {
       link.classList.add("active");
     }
@@ -207,7 +207,7 @@ if (
   currentPage === "index.html" ||
   currentPage === "" ||
   currentPage === "/" ||
-  currentPage === "aldiron_logistics2.html"
+  currentPage === "aldiron_logistics.html"
 ) {
   let scrollTimer;
 
@@ -272,7 +272,7 @@ bottomNavItems.forEach((item) => {
       href === currentPage ||
       (currentPage === "" && href === "index.html") ||
       (currentPage === "/" && href === "index.html") ||
-      (currentPage === "aldiron_logistics2.html" && href === "index.html")
+      (currentPage === "aldiron_logistics.html" && href === "index.html")
     ) {
       e.preventDefault();
       window.scrollTo({
@@ -357,85 +357,421 @@ if (chatBtn) {
   });
 }
 
-// ==================== BOOKING FORM ====================
-// Tab switching for booking form
+// ==================== BOOKING & TRACKING SYSTEM ====================
+
+// Dummy Data untuk Tracking
+const dummyTrackingData = {
+  ALR001234567: {
+    trackingNumber: "ALR001234567",
+    status: "delivered",
+    sender: "PT. Maju Jaya",
+    recipient: "Ahmad Fauzi",
+    origin: "Jakarta",
+    destination: "Surabaya",
+    weight: "15 kg",
+    service: "Express (1-2 days)",
+    estimatedDelivery: "2025-01-12 14:00",
+    history: [
+      {
+        date: "2025-01-12 14:30",
+        status: "Package Delivered",
+        location: "Surabaya - Received by Ahmad Fauzi",
+        active: true,
+      },
+      {
+        date: "2025-01-12 08:15",
+        status: "Out for Delivery",
+        location: "Surabaya Distribution Center",
+        active: false,
+      },
+      {
+        date: "2025-01-11 22:00",
+        status: "Arrived at Destination Hub",
+        location: "Surabaya Hub",
+        active: false,
+      },
+      {
+        date: "2025-01-11 18:30",
+        status: "In Transit",
+        location: "Semarang Transit Point",
+        active: false,
+      },
+      {
+        date: "2025-01-11 10:00",
+        status: "Departed from Origin",
+        location: "Jakarta Distribution Center",
+        active: false,
+      },
+      {
+        date: "2025-01-11 08:00",
+        status: "Package Picked Up",
+        location: "Jakarta - PT. Maju Jaya",
+        active: false,
+      },
+    ],
+  },
+  ALR002345678: {
+    trackingNumber: "ALR002345678",
+    status: "in-transit",
+    sender: "Toko Elektronik Sejahtera",
+    recipient: "Budi Santoso",
+    origin: "Bandung",
+    destination: "Bali",
+    weight: "8 kg",
+    service: "Regular (3-5 days)",
+    estimatedDelivery: "2025-01-13 16:00",
+    history: [
+      {
+        date: "2025-01-11 14:20",
+        status: "In Transit",
+        location: "Yogyakarta Transit Point",
+        active: true,
+      },
+      {
+        date: "2025-01-10 20:00",
+        status: "Departed from Origin",
+        location: "Bandung Distribution Center",
+        active: false,
+      },
+      {
+        date: "2025-01-10 15:30",
+        status: "Package Picked Up",
+        location: "Bandung - Toko Elektronik Sejahtera",
+        active: false,
+      },
+    ],
+  },
+  ALR003456789: {
+    trackingNumber: "ALR003456789",
+    status: "out-for-delivery",
+    sender: "CV. Berkah Mandiri",
+    recipient: "Siti Nurhaliza",
+    origin: "Medan",
+    destination: "Pekanbaru",
+    weight: "22 kg",
+    service: "Express (1-2 days)",
+    estimatedDelivery: "2025-01-10 17:00",
+    history: [
+      {
+        date: "2025-01-10 07:45",
+        status: "Out for Delivery",
+        location: "Pekanbaru Distribution Center",
+        active: true,
+      },
+      {
+        date: "2025-01-10 01:30",
+        status: "Arrived at Destination Hub",
+        location: "Pekanbaru Hub",
+        active: false,
+      },
+      {
+        date: "2025-01-09 18:00",
+        status: "In Transit",
+        location: "Dumai Transit Point",
+        active: false,
+      },
+      {
+        date: "2025-01-09 12:00",
+        status: "Departed from Origin",
+        location: "Medan Distribution Center",
+        active: false,
+      },
+      {
+        date: "2025-01-09 09:15",
+        status: "Package Picked Up",
+        location: "Medan - CV. Berkah Mandiri",
+        active: false,
+      },
+    ],
+  },
+  ALR004567890: {
+    trackingNumber: "ALR004567890",
+    status: "pending",
+    sender: "UD. Sumber Rezeki",
+    recipient: "Eko Prasetyo",
+    origin: "Samarinda",
+    destination: "Balikpapan",
+    weight: "5 kg",
+    service: "Same Day",
+    estimatedDelivery: "2025-01-10 18:00",
+    history: [
+      {
+        date: "2025-01-10 06:00",
+        status: "Booking Confirmed",
+        location: "Samarinda - UD. Sumber Rezeki",
+        active: true,
+      },
+    ],
+  },
+};
+
+// Tab Switching
 const tabButtons = document.querySelectorAll(".tab-btn");
+const bookingFormElement = document.getElementById("bookingForm");
+const trackingFormElement = document.getElementById("trackingForm");
+
 tabButtons.forEach((button) => {
   button.addEventListener("click", function () {
+    const targetTab = this.getAttribute("data-tab");
+
+    // Remove active from all tabs and forms
     tabButtons.forEach((btn) => btn.classList.remove("active"));
+    document
+      .querySelectorAll(".tab-content")
+      .forEach((content) => content.classList.remove("active"));
+
+    // Add active to clicked tab
     this.classList.add("active");
 
-    // You can add logic here to show different form fields based on tab
-    console.log("Tab switched:", this.textContent.trim());
+    // Show corresponding form
+    if (targetTab === "booking") {
+      bookingFormElement.classList.add("active");
+      document.getElementById("trackingResult").style.display = "none";
+    } else if (targetTab === "tracking") {
+      trackingFormElement.classList.add("active");
+    }
   });
 });
 
-// Form submission handler
-const bookingForm = document.querySelector(".booking-form");
-if (bookingForm) {
-  bookingForm.addEventListener("submit", (e) => {
+// ==================== BOOKING FORM HANDLER ====================
+if (bookingFormElement) {
+  bookingFormElement.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const name = bookingForm.querySelector('input[type="text"]').value.trim();
-    const email = bookingForm.querySelector('input[type="email"]').value.trim();
-    const mobile = bookingForm.querySelector('input[type="tel"]').value.trim();
-    const description =
-      bookingForm.querySelectorAll('input[type="text"]')[1]?.value.trim() || "";
+    // Get form values
+    const name = document.getElementById("bookingName").value.trim();
+    const email = document.getElementById("bookingEmail").value.trim();
+    const mobile = document.getElementById("bookingMobile").value.trim();
+    const from = document.getElementById("bookingFrom").value.trim();
+    const to = document.getElementById("bookingTo").value.trim();
+    const weight = document.getElementById("bookingWeight").value.trim();
+    const service = document.getElementById("bookingService").value;
+    const description = document
+      .getElementById("bookingDescription")
+      .value.trim();
 
     // Validation
-    if (!name || !email || !mobile) {
-      alert("❌ Mohon lengkapi semua field yang wajib diisi!");
+    if (!name || !email || !mobile || !from || !to || !weight || !service) {
+      showAlert(
+        "❌ Error",
+        "Mohon lengkapi semua field yang wajib diisi!",
+        "error"
+      );
       return;
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert("❌ Format email tidak valid!\nContoh: nama@example.com");
-      return;
-    }
-
-    // Phone validation (Indonesia)
-    const phoneRegex = /^(\+62|62|0)[0-9]{9,13}$/;
-    const cleanMobile = mobile.replace(/[\s-]/g, "");
-
-    if (!phoneRegex.test(cleanMobile)) {
-      alert(
-        "❌ Format nomor telepon tidak valid!\n\n" +
-          "Gunakan format:\n" +
-          "• 08xx-xxxx-xxxx\n" +
-          "• +62xxx-xxxx-xxxx\n" +
-          "• 62xxx-xxxx-xxxx"
+      showAlert(
+        "❌ Invalid Email",
+        "Format email tidak valid!\nContoh: nama@example.com",
+        "error"
       );
       return;
     }
 
-    // Success
-    alert(
-      `✅ Terima kasih, ${name}!\n\n` +
-        `Permintaan booking Anda telah diterima.\n\n` +
-        `📋 Detail:\n` +
-        `Nama: ${name}\n` +
-        `Email: ${email}\n` +
-        `Mobile: ${mobile}\n` +
-        (description ? `Deskripsi: ${description}\n\n` : "\n") +
-        `Kami akan menghubungi Anda segera melalui email atau telepon.\n\n` +
-        `Untuk informasi lebih lanjut, hubungi:\n` +
-        `📞 0819 3141 8884`
-    );
+    // Phone validation
+    const phoneRegex = /^(\+62|62|0)[0-9]{9,13}$/;
+    const cleanMobile = mobile.replace(/[\s-]/g, "");
 
-    // Reset form
-    bookingForm.reset();
+    if (!phoneRegex.test(cleanMobile)) {
+      showAlert(
+        "❌ Invalid Phone",
+        "Format nomor telepon tidak valid!\n\nGunakan format:\n• 08xx-xxxx-xxxx\n• +62xxx-xxxx-xxxx\n• 62xxx-xxxx-xxxx",
+        "error"
+      );
+      return;
+    }
 
-    // Optional: Send to analytics or backend
-    console.log("Form submitted:", {
+    // Generate tracking number
+    const trackingNumber = generateTrackingNumber();
+
+    // Save booking data (in real app, send to backend)
+    console.log("Booking submitted:", {
+      trackingNumber,
       name,
       email,
       mobile,
+      from,
+      to,
+      weight,
+      service,
       description,
       timestamp: new Date().toISOString(),
     });
+
+    // Show success modal
+    showBookingSuccess(trackingNumber, name, from, to);
+
+    // Reset form
+    bookingFormElement.reset();
   });
+}
+
+// Generate Tracking Number
+function generateTrackingNumber() {
+  const prefix = "ALR";
+  const random = Math.floor(Math.random() * 1000000000)
+    .toString()
+    .padStart(9, "0");
+  return `${prefix}${random}`;
+}
+
+// Show Booking Success Modal
+function showBookingSuccess(trackingNumber, name, from, to) {
+  const modal = document.createElement("div");
+  modal.className = "success-modal";
+  modal.innerHTML = `
+    <div class="success-modal-content">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Booking Berhasil!</h3>
+      <p>Terima kasih <strong>${name}</strong>,<br>
+      Pengiriman Anda dari <strong>${from}</strong> ke <strong>${to}</strong> telah dikonfirmasi.</p>
+      
+      <div class="tracking-number-display">
+        <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 13px;">Nomor Resi Anda:</p>
+        <strong>${trackingNumber}</strong>
+      </div>
+      
+      <p style="font-size: 13px; color: #6b7280;">
+        <i class="fas fa-info-circle"></i> Simpan nomor resi ini untuk tracking paket Anda
+      </p>
+      
+      <button class="btn-submit" onclick="closeSuccessModal()">
+        <i class="fas fa-check"></i> OK, MENGERTI
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Auto close after 8 seconds
+  setTimeout(() => {
+    closeSuccessModal();
+  }, 8000);
+}
+
+// Close Success Modal
+function closeSuccessModal() {
+  const modal = document.querySelector(".success-modal");
+  if (modal) {
+    modal.style.animation = "fadeOut 0.3s ease";
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
+  }
+}
+
+// ==================== TRACKING FORM HANDLER ====================
+if (trackingFormElement) {
+  trackingFormElement.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const trackingNumber = document
+      .getElementById("trackingNumber")
+      .value.trim()
+      .toUpperCase();
+
+    if (!trackingNumber) {
+      showAlert("❌ Error", "Mohon masukkan nomor resi!", "error");
+      return;
+    }
+
+    // Search in dummy data
+    const trackingData = dummyTrackingData[trackingNumber];
+
+    if (trackingData) {
+      displayTrackingResult(trackingData);
+    } else {
+      showAlert(
+        "❌ Not Found",
+        `Nomor resi "${trackingNumber}" tidak ditemukan.\n\n` +
+          `Coba gunakan nomor resi berikut untuk testing:\n` +
+          `• ALR001234567 (Delivered)\n` +
+          `• ALR002345678 (In Transit)\n` +
+          `• ALR003456789 (Out for Delivery)\n` +
+          `• ALR004567890 (Pending)`,
+        "error"
+      );
+    }
+  });
+}
+
+// Display Tracking Result
+function displayTrackingResult(data) {
+  const resultDiv = document.getElementById("trackingResult");
+
+  // Populate data
+  document.getElementById("resultTrackingNumber").textContent =
+    data.trackingNumber;
+
+  const statusBadge = document.getElementById("resultStatus");
+  statusBadge.textContent = formatStatus(data.status);
+  statusBadge.className = `status-badge status-${data.status}`;
+
+  document.getElementById("resultSender").textContent = data.sender;
+  document.getElementById("resultRecipient").textContent = data.recipient;
+  document.getElementById("resultOrigin").textContent = data.origin;
+  document.getElementById("resultDestination").textContent = data.destination;
+  document.getElementById("resultWeight").textContent = data.weight;
+  document.getElementById("resultService").textContent = data.service;
+  document.getElementById("resultEstimated").textContent =
+    data.estimatedDelivery;
+
+  // Build timeline
+  const timeline = document.getElementById("trackingTimeline");
+  timeline.innerHTML = "";
+
+  data.history.forEach((item) => {
+    const timelineItem = document.createElement("div");
+    timelineItem.className = `timeline-item ${item.active ? "active" : ""}`;
+    timelineItem.innerHTML = `
+      <div class="timeline-date">${item.date}</div>
+      <div class="timeline-status">${item.status}</div>
+      <div class="timeline-location">
+        <i class="fas fa-map-marker-alt"></i>
+        ${item.location}
+      </div>
+    `;
+    timeline.appendChild(timelineItem);
+  });
+
+  // Show result
+  resultDiv.style.display = "block";
+
+  // Smooth scroll to result
+  setTimeout(() => {
+    smoothScrollTo(resultDiv, 100);
+  }, 300);
+}
+
+// Close Tracking Result
+const closeTrackingBtn = document.getElementById("closeTracking");
+if (closeTrackingBtn) {
+  closeTrackingBtn.addEventListener("click", function () {
+    document.getElementById("trackingResult").style.display = "none";
+    document.getElementById("trackingNumber").value = "";
+  });
+}
+
+// Format Status Text
+function formatStatus(status) {
+  const statusMap = {
+    pending: "Pending",
+    "in-transit": "In Transit",
+    "out-for-delivery": "Out for Delivery",
+    delivered: "Delivered",
+    failed: "Failed",
+  };
+  return statusMap[status] || status;
+}
+
+// Show Alert Function
+function showAlert(title, message, type = "info") {
+  alert(`${title}\n\n${message}`);
 }
 
 // ==================== SERVICE CARDS ====================
@@ -510,7 +846,7 @@ if (sidebarCtaBtn) {
       currentPage !== "index.html" &&
       currentPage !== "" &&
       currentPage !== "/" &&
-      currentPage !== "aldiron_logistics2.html"
+      currentPage !== "aldiron_logistics.html"
     ) {
       window.location.href = "contact.html";
     } else {
@@ -531,14 +867,12 @@ const seeAllBtn = document.querySelector(".see-all-btn");
 if (prevArrow) {
   prevArrow.addEventListener("click", function () {
     console.log("Previous news clicked");
-    // Add your news navigation logic here
   });
 }
 
 if (nextArrow) {
   nextArrow.addEventListener("click", function () {
     console.log("Next news clicked");
-    // Add your news navigation logic here
   });
 }
 
@@ -559,14 +893,12 @@ const paginationNext = document.querySelector(".pagination-next");
 if (paginationPrev) {
   paginationPrev.addEventListener("click", function () {
     console.log("Previous page clicked");
-    // Add pagination logic here
   });
 }
 
 if (paginationNext) {
   paginationNext.addEventListener("click", function () {
     console.log("Next page clicked");
-    // Add pagination logic here
   });
 }
 
@@ -577,7 +909,6 @@ testimonialNavButtons.forEach((button, index) => {
     console.log(
       `Testimonial navigation ${index === 0 ? "previous" : "next"} clicked`
     );
-    // Add testimonial navigation logic here
   });
 });
 
@@ -587,28 +918,24 @@ avatarImages.forEach((img) => {
     avatarImages.forEach((avatar) => avatar.classList.remove("active-avatar"));
     this.classList.add("active-avatar");
     console.log("Avatar clicked");
-    // Add logic to change testimonial content
   });
 });
 
-// ==================== FOOTER CONTACT BUTTON (UPDATED) ====================
+// ==================== FOOTER CONTACT BUTTON ====================
 const footerContactBtn = document.querySelector(".contact-btn-footer");
 if (footerContactBtn) {
   footerContactBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    // Check if we're on index page
     const isIndexPage =
       currentPage === "index.html" ||
       currentPage === "" ||
       currentPage === "/" ||
-      currentPage === "aldiron_logistics2.html";
+      currentPage === "aldiron_logistics.html";
 
     if (!isIndexPage) {
-      // If not on index, go to contact page
       window.location.href = "contact.html";
     } else {
-      // If on index, scroll to booking section
       const bookingSection = document.querySelector(".booking-tracking");
       if (bookingSection) {
         smoothScrollTo(bookingSection);
@@ -617,8 +944,7 @@ if (footerContactBtn) {
   });
 }
 
-// ==================== FOOTER SOCIAL MEDIA LINKS (UPDATED) ====================
-// WhatsApp messenger icon
+// ==================== FOOTER SOCIAL MEDIA LINKS ====================
 const footerWhatsapp = document.querySelector(".messenger-icon.whatsapp");
 if (footerWhatsapp) {
   footerWhatsapp.addEventListener("click", function (e) {
@@ -633,75 +959,61 @@ if (footerWhatsapp) {
   });
 }
 
-// Instagram messenger icon
 const footerInstagram = document.querySelector(".messenger-icon.instagram");
 if (footerInstagram) {
   footerInstagram.addEventListener("click", function (e) {
     e.preventDefault();
-    // Replace with your actual Instagram URL
     window.open("https://instagram.com/aldiron.official", "_blank");
   });
 }
 
-// Telegram messenger icon
 const footerTelegram = document.querySelector(".messenger-icon.telegram");
 if (footerTelegram) {
   footerTelegram.addEventListener("click", function (e) {
     e.preventDefault();
-    // Replace with your actual Telegram URL
     window.open("https://t.me/aldiron_official", "_blank");
   });
 }
 
-// YouTube social icon
 const footerYoutube = document.querySelector(".social-icon.youtube");
 if (footerYoutube) {
   footerYoutube.addEventListener("click", function (e) {
     e.preventDefault();
-    // Replace with your actual YouTube URL
     window.open("https://youtube.com/@aldiron", "_blank");
   });
 }
 
-// LinkedIn social icon
 const footerLinkedin = document.querySelector(".social-icon.linkedin");
 if (footerLinkedin) {
   footerLinkedin.addEventListener("click", function (e) {
     e.preventDefault();
-    // Replace with your actual LinkedIn URL
     window.open("https://linkedin.com/company/aldiron", "_blank");
   });
 }
 
-// Facebook social icon
 const footerFacebook = document.querySelector(".social-icon.facebook");
 if (footerFacebook) {
   footerFacebook.addEventListener("click", function (e) {
     e.preventDefault();
-    // Replace with your actual Facebook URL
     window.open("https://facebook.com/aldiron.official", "_blank");
   });
 }
 
-// TikTok social icon
 const footerTiktok = document.querySelector(".social-icon.tiktok");
 if (footerTiktok) {
   footerTiktok.addEventListener("click", function (e) {
     e.preventDefault();
-    // Replace with your actual TikTok URL
     window.open("https://tiktok.com/@aldiron", "_blank");
   });
 }
 
 // ==================== ACCESSIBILITY ====================
-// Escape key to close sidebar
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closeMobileSidebar();
   }
 });
 
-// Keyboard navigation for sidebar toggle
 if (sidebarToggle) {
   sidebarToggle.addEventListener("keypress", function (e) {
     if (e.key === "Enter" || e.key === " ") {
@@ -711,7 +1023,6 @@ if (sidebarToggle) {
   });
 }
 
-// Focus trap in sidebar when open
 if (mobileSidebar) {
   const focusableElements =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -740,7 +1051,6 @@ if (mobileSidebar) {
 }
 
 // ==================== PERFORMANCE OPTIMIZATION ====================
-// Lazy load images
 if ("IntersectionObserver" in window) {
   const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -760,7 +1070,6 @@ if ("IntersectionObserver" in window) {
   });
 }
 
-// Preload critical resources
 function preloadResources() {
   const links = [
     { rel: "preconnect", href: "https://cdnjs.cloudflare.com" },
@@ -778,29 +1087,11 @@ function preloadResources() {
 // ==================== ERROR HANDLING ====================
 window.addEventListener("error", function (e) {
   console.error("JavaScript Error:", e.error);
-  // You can send this to an error tracking service
 });
 
 // ==================== INITIALIZATION ====================
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("🚀 Aldiron Logistics - Website Initialized");
-  console.log(`📄 Current Page: ${currentPage}`);
-  console.log(`👤 User: Aliester10`);
-  console.log(`📅 Date: 2025-10-10`);
-  console.log("✅ Mobile Navigation: Ready");
-  console.log("✅ Sidebar: Ready");
-  console.log("✅ Bottom Navigation: Ready");
-  console.log("✅ Footer Updated: Ready");
-  console.log("✅ All event listeners: Initialized");
-  console.log("✅ Accessibility features: Enabled");
-  console.log("✅ Performance optimizations: Active");
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("🎉 Website ready for use!");
-
-  // Preload resources
   preloadResources();
-
-  // Set initial active states
   setActiveNavByPage();
 });
 
@@ -812,22 +1103,3 @@ document.addEventListener("visibilitychange", function () {
     console.log("Page visible");
   }
 });
-
-// ==================== CONSOLE SIGNATURE ====================
-console.log(
-  "%c🚛 Aldiron Logistics Website ",
-  "background: #00726b; color: white; font-size: 16px; padding: 10px; border-radius: 5px;"
-);
-console.log(
-  "%cDeveloped with ❤️ for seamless logistics experience",
-  "color: #00726b; font-size: 12px;"
-);
-console.log("%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "color: #00726b;");
-console.log(
-  "%c✅ Footer social media links: Initialized",
-  "color: #00726b; font-weight: bold;"
-);
-console.log(
-  "%c✅ Footer contact button: Ready",
-  "color: #00726b; font-weight: bold;"
-);
