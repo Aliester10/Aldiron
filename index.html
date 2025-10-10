@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aldiron - Logistics Company</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="top-bar">
+      <div class="top-bar-wrapper">
+        <div class="top-bar-content">
+          <div class="top-bar-item">
+            <i class="fas fa-certificate"></i>
+            <span>Member of ALDERON</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="far fa-calendar-alt"></i>
+            <span>MON - FRI: 08:00 AM - 17:30 PM</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>Hotline: 0819 3141 8884</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="far fa-envelope"></i>
+            <span>Support: business@aldiron.co.id</span>
+          </div>
+          <div class="top-bar-item language-selector">
+            <img src="https://flagcdn.com/w20/id.png" alt="ID" width="16" />
+            <span>ID</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-wrapper">
+        <div class="navbar-left">
+          <div class="logo">
+            <a href="index.html"
+              ><img src="images/aldiron-logo.png" alt="ALDIRON"
+            /></a>
+          </div>
+
+          <!-- Hamburger Menu Toggle for Sidebar (Mobile Only) -->
+          <button class="mobile-sidebar-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Desktop Menu -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">Introduce</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="navbar-right">
+          <div class="diagonal-shape"></div>
+          <div class="contact-service-wrapper">
+            <div class="phone-circle">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <span class="contact-text">Contact Service</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar">
+      <div class="sidebar-overlay"></div>
+      <div class="sidebar-content">
+        <div class="sidebar-header">
+          <img
+            src="images/aldiron-logo.png"
+            alt="ALDIRON"
+            class="sidebar-logo"
+          />
+          <button class="sidebar-close" aria-label="Close Menu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="sidebar-body">
+          <div class="sidebar-section">
+            <h3><i class="fas fa-info-circle"></i> Tentang Kami</h3>
+            <p>
+              PT Aldiron Jaya Makmur adalah perusahaan logistics terpercaya
+              sejak 2005, menyediakan solusi transportasi dan distribusi terbaik
+              untuk bisnis Anda.
+            </p>
+          </div>
+
+          <div class="sidebar-section">
+            <h3><i class="fas fa-phone"></i> Kontak</h3>
+            <ul class="sidebar-contact">
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <span>0819 3141 8884</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>business@aldiron.co.id</span>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Jl Veteran No 41, Samarinda, Kalimantan Timur 75117</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-section">
+            <h3><i class="fas fa-clock"></i> Jam Operasional</h3>
+            <p>
+              <strong>Senin - Jumat</strong><br />08:00 - 17:30 WIB<br /><br /><strong
+                >Sabtu - Minggu</strong
+              ><br />Tutup
+            </p>
+          </div>
+
+          <div class="sidebar-section">
+            <h3><i class="fas fa-share-alt"></i> Media Sosial</h3>
+            <div class="sidebar-social">
+              <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <button class="sidebar-cta-btn">
+              <i class="fas fa-paper-plane"></i>
+              Hubungi Kami
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <a href="index.html" class="bottom-nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="about.html" class="bottom-nav-item">
+        <i class="fas fa-info-circle"></i>
+        <span>Introduce</span>
+      </a>
+      <a href="service.html" class="bottom-nav-item">
+        <i class="fas fa-briefcase"></i>
+        <span>Service</span>
+      </a>
+      <a href="news.html" class="bottom-nav-item">
+        <i class="fas fa-newspaper"></i>
+        <span>News</span>
+      </a>
+      <a href="contact.html" class="bottom-nav-item">
+        <i class="fas fa-phone-alt"></i>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <img
+        src="images/hero-logistics-truck.jpg"
+        alt="Aldiron Truck"
+        class="hero-bg"
+      />
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to Aldiron</h1>
+          <p>
+            Your trusted logistics partner for seamless transportation and
+            delivery solutions
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking & Tracking + Introduction Section with Sky Background -->
+    <section class="booking-intro-section">
+      <div class="sky-background">
+        <!-- Booking & Tracking Section -->
+        <div class="booking-tracking">
+          <div class="container">
+            <div class="booking-card">
+              <div class="booking-header">
+                <h2>Booking & Tracking</h2>
+                <div class="booking-tabs">
+                  <button class="tab-btn active">
+                    <i class="fas fa-cube"></i> Send a shipment
+                  </button>
+                  <button class="tab-btn">
+                    <i class="fas fa-search"></i> Track a BOL
+                  </button>
+                </div>
+              </div>
+              <form class="booking-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Email" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Mobile</label>
+                    <input type="tel" placeholder="Mobile" required />
+                  </div>
+                  <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" placeholder="Help" />
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn-submit">
+                      <i class="fas fa-paper-plane"></i> SUBMIT
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="image-section">
+          <div class="container">
+            <img
+              src="images/package-handling.png"
+              alt="Package Handling"
+              class="full-width-image"
+            />
+          </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="introduction" id="introduce">
+          <div class="container">
+            <h2>Introduction Aldiron Jaya Makmur</h2>
+            <p>
+              PT Aldiron Jaya Makmur is a company established in November 1,
+              2005 specialized in Logistics and Freight Forwarding services. Our
+              commitment is to provide excellent service and build long-term
+              relationships with our clients.
+            </p>
+
+            <p>
+              We take pride in our exceptional logistics and transportation
+              services that have been trusted by many clients. Tracking,
+              freight, warehousing, and distribution – we handle it all. With a
+              team of experienced professionals, we ensure every shipment
+              arrives safely and on time.
+            </p>
+
+            <p>
+              Our mission is to be the leading logistics provider in Indonesia,
+              offering innovative solutions and maintaining the highest
+              standards of service quality. We continuously invest in technology
+              and infrastructure to better serve our customers.
+            </p>
+
+            <button class="btn-outline">Read More ➔</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Image Section with Decorative Lines and Truck -->
+    <section class="team-image">
+      <div class="team-image-container">
+        <img
+          src="images/team-with-truck.png"
+          alt="Aldiron Team"
+          class="team-img"
+        />
+      </div>
+      <!-- Decorative Lines -->
+      <div class="team-decorative-wrapper">
+        <div class="decorative-line line-teal"></div>
+        <div class="decorative-line line-white"></div>
+      </div>
+      <!-- Floating Truck Image -->
+      <div class="floating-truck">
+        <img src="images/truck.png" alt="Aldiron Truck" />
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="service">
+      <div class="container">
+        <h2>Service Aldiron</h2>
+        <p class="services-subtitle">
+          Kami di Aldiron Jaya Makmur menawarkan berbagai layanan logistics yang
+          dirancang untuk memenuhi kebutuhan bisnis Anda dengan efisien dan
+          andal
+        </p>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <img
+              src="images/inland-transportation.png"
+              alt="Inland Transportation"
+            />
+            <div class="service-label">
+              <span>Inland Transportation</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <img src="images/domestic-rail.png" alt="Domestic Rail" />
+            <div class="service-label">
+              <span>Domestic Rail</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <img src="images/cold-chain.png" alt="Cold Chain" />
+            <div class="service-label">
+              <span>Cold Chain</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <img
+              src="images/warehouse-management.png"
+              alt="Warehouse Management"
+            />
+            <div class="service-label">
+              <span>Warehouse Management</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <img
+              src="images/cross-border-transportation.png"
+              alt="Cross Border Transportation"
+            />
+            <div class="service-label">
+              <span>Cross Border Transportation</span>
+            </div>
+          </div>
+          <div class="service-card">
+            <img src="images/domestic-sea.png" alt="Domestic Sea" />
+            <div class="service-label">
+              <span>Domestic Sea</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Section -->
+    <section class="value-section">
+      <div class="value-background-overlay"></div>
+      <div class="container">
+        <h2>Value ITL Logistics</h2>
+        <div class="value-cards">
+          <div class="value-card orange">
+            <div class="value-number">01</div>
+            <div class="card-header">
+              <h3>Asset heavy</h3>
+            </div>
+            <div class="card-content">
+              <p>200,000+ m2 of warehouse space nationwide</p>
+              <p>200+ head trucks, 30+ barges, 4 ports & depots</p>
+              <p>Yen Vien railway container terminal</p>
+            </div>
+            <div class="value-icon orange-icon">
+              <img src="images/asset-management 1.png" alt="Asset Heavy" />
+            </div>
+          </div>
+          <div class="value-card green">
+            <div class="value-number">02</div>
+            <div class="card-header">
+              <h3>Tier 1 logistics provider</h3>
+            </div>
+            <div class="card-content">
+              <p>100% asset and workforce utilization</p>
+              <p>Elimination of outsourced services</p>
+              <p>Faster and more reliable service</p>
+              <p>More sustainable and economical solutions</p>
+            </div>
+            <div class="value-icon green-icon">
+              <img src="images/solution 1.png" alt="Tier 1 Provider" />
+            </div>
+          </div>
+          <div class="value-card blue">
+            <div class="value-number">03</div>
+            <div class="card-header">
+              <h3>Environmentally friendly logistics solutions</h3>
+            </div>
+            <div class="card-content">
+              <p>Green freight Asia Label leaf level 3</p>
+              <p>100% electric material handling equipment</p>
+              <p>Solar panels on our warehouse</p>
+            </div>
+            <div class="value-icon blue-icon">
+              <img src="images/world 1.png" alt="Eco Friendly" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section" id="news">
+      <div class="container">
+        <div class="news-header">
+          <h2>Feature News</h2>
+          <div class="news-nav">
+            <button class="nav-arrow prev-arrow">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-arrow next-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="see-all-btn">
+              See all <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="news-content-wrapper">
+          <!-- Left Side - News List -->
+          <div class="news-list">
+            <div class="news-item">
+              <div class="news-item-text">
+                <h3>
+                  The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                  container
+                </h3>
+                <p>
+                  The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                  container Hàng lẻ (LCL – Less than Container Load) và Hàng
+                  [...]
+                </p>
+              </div>
+              <div class="news-item-image">
+                <img src="images/Rectangle 86.png" alt="News 1" />
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-item-text">
+                <h3>
+                  The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                  container
+                </h3>
+                <p>
+                  The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                  container Hàng lẻ (LCL – Less than Container Load) và Hàng
+                  [...]
+                </p>
+              </div>
+              <div class="news-item-image">
+                <img src="images/cold-chain.png" alt="News 2" />
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-item-text">
+                <h3>
+                  The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                  container
+                </h3>
+                <p>
+                  The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                  container Hàng lẻ (LCL – Less than Container Load) và Hàng
+                  [...]
+                </p>
+              </div>
+              <div class="news-item-image">
+                <img
+                  src="images/cross-border-transportation.png"
+                  alt="News 3"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side - Featured News -->
+          <div class="news-featured">
+            <div class="news-featured-image">
+              <img src="images/Rectangle 86.png" alt="Featured News" />
+            </div>
+            <div class="news-featured-content">
+              <h3>
+                The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                container
+              </h3>
+              <p>
+                The MONA cung cấp dịch vụ gom hàng lẻ và chuyển hàng nguyên
+                container Hàng lẻ (LCL – Less than Container Load) và Hàng [...]
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="news-pagination">
+          <button class="pagination-prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <span class="pagination-info">2 / 9</span>
+          <button class="pagination-next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2>What client said</h2>
+        <div class="testimonial-content">
+          <div class="client-avatars">
+            <div class="avatar active">
+              <img src="images/pu.png" alt="Client 1" />
+              <div class="client-info">
+                <strong>Erlan Sadli, S.Trp.Map</strong>
+                <span>Logistics Manager</span>
+              </div>
+            </div>
+            <div class="avatar-list">
+              <img src="images/p1.png" alt="Client 2" />
+              <img src="images/p2.png" alt="Client 3" />
+              <img src="images/p3.png" alt="Client 4" />
+              <img src="images/p4.png" alt="Client 5" />
+              <img src="images/p5.png" alt="Client 6" />
+              <img src="images/p6.png" alt="Client 7" />
+              <img src="images/p7.png" alt="Client 8" />
+              <img src="images/p8.png" alt="Client 9" />
+            </div>
+            <div class="nav-arrows">
+              <button>❮</button>
+              <button>❯</button>
+            </div>
+          </div>
+          <div class="testimonial-text">
+            <blockquote>
+              <p>"We have full trust and respect on their team and know"</p>
+              <div class="rating">
+                <img src="images/s1.svg" alt="star" />
+                <img src="images/s2.svg" alt="star" />
+                <img src="images/s3.svg" alt="star" />
+                <img src="images/s4.svg" alt="star" />
+                <img src="images/s4.svg" alt="star" />
+              </div>
+              <p>
+                Saya sangat terkesan dengan layanan yang diberikan oleh Aldiron
+                Jaya Makmur. Tim mereka sangat profesional dan responsif
+                terhadap setiap kebutuhan kami. Pengiriman selalu tepat waktu
+                dan barang sampai dalam kondisi sempurna. Sistem tracking mereka
+                juga sangat membantu kami untuk memantau setiap pengiriman
+                secara real-time. Highly recommended untuk perusahaan yang
+                membutuhkan partner logistik yang dapat diandalkan!
+              </p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>CONTACT US</h3>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>
+                Jl Veteran No 41 Jalan Gajah<br />Samarinda, Indonesia 75117
+              </p>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <p>cs@aldiron.co.id</p>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <p>0819 3141 8884</p>
+            </div>
+            <button class="contact-btn-footer">Contact Us</button>
+          </div>
+
+          <div class="footer-column">
+            <h3>ABOUT US</h3>
+            <ul>
+              <li><a href="about.html">Company info</a></li>
+              <li><a href="news.html">News</a></li>
+              <li><a href="#">Investors</a></li>
+              <li><a href="#">Our Customer</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>NEWS</h3>
+            <ul>
+              <li><a href="news.html">Hot News</a></li>
+              <li><a href="#">Business Express</a></li>
+              <li><a href="#">Economy</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>SERVICE</h3>
+            <ul>
+              <li><a href="service.html">Broad integration point</a></li>
+              <li><a href="#">E-commerce</a></li>
+              <li><a href="#">Cold chain</a></li>
+              <li><a href="#">Warehouse Management</a></li>
+              <li><a href="#">Cross Border Transportation</a></li>
+              <li><a href="#">Contract</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>SOCIAL MEDIA</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon youtube" aria-label="YouTube"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="#" class="social-icon linkedin" aria-label="LinkedIn"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="#" class="social-icon facebook" aria-label="Facebook"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="social-icon tiktok" aria-label="TikTok"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+            <div class="messenger-icons">
+              <a href="#" class="messenger-icon whatsapp" aria-label="WhatsApp"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+              <a
+                href="#"
+                class="messenger-icon instagram"
+                aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="messenger-icon telegram" aria-label="Telegram"
+                ><i class="fab fa-telegram"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p>© All rights reserved - ALDIRON</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+      <button class="fab-btn" title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      <button class="fab-btn" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </button>
+      <button class="fab-btn" title="Chat">
+        <i class="fas fa-comments"></i>
+      </button>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
